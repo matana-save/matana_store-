@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>متانة | خزنات آمنة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+   :root{
+     --bg:#F5F5F5;
+     --panel:#E8E8E8;
+     --card:#E8E8E8;
+     --text:#333333;
+     --muted:#000000;
+     --gold:#D4AF37;
+     --line:rgba(0,0,0,0.1);
+     --slideshow-bg:#E8E8E8;
+   }
+   *{box-sizing:border-box}
+   body{margin:0;font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text)}
+   .container{max-width:1200px;margin:auto;padding:20px}
+   header{display:flex;justify-content:space-between;align-items:center;padding:20px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+   .brand{font-size:1.0rem;font-weight:400;color:var(--gold)}
+   input{padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text);width:200px}
+   .btn{padding:5px 10px;border-radius:7px;border:none;cursor:pointer;font-weight:700;margin:2px}
+   .btn-gold{background:var(--gold);color:#000}
+   .btn-outline{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+   
+   .hero{
+     padding:40px 20px;
+     text-align:center;
+     background:var(--panel);
+     border:1px solid var(--line);
+     border-radius:20px;
+     margin:20px 0;
+     box-shadow:0 2px 8px rgba(0,0,0,0.05);
+   }
+   
+   .hero h2{
+     color:var(--gold);
+     font-size:1.0rem;
+     margin:0 0 8px;
+   }
+   
+   .slideshow-container{
+     position:relative;
+     margin:20px 0;
+     overflow:hidden;
+     border-radius:20px;
+   }
+   .slide{
+     display:none;
+     width:100%;
+     animation:fade 1.5s;
+   }
+   .slide img{
+     width:100%;
+     border-radius:20px;
+   }
+   @keyframes fade{
+     from{opacity:0.4}
+     to{opacity:1}
+   }
+   
+   .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:20px 0}
+   .card,.product-card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+   .price{color:var(--gold);font-weight:600;font-size:1.3rem}
+   .meta{color:var(--muted);font-size:.9rem;margin:4px 0}
+   .admin-panel{display:none;margin-top:20px;padding:20px;background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+   .admin-panel.open{display:block}
+   .grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+   .field{margin-bottom:10px}
+   label{display:block;margin-bottom:5px;color:var(--muted)}
+   input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+   .admin-toggle{background:var(--card);border:1px solid var(--line);color:var(--gold);padding:8px 16px;border-radius:8px;cursor:pointer;margin:10px 0}
+   .contact-section{margin:1px 0;padding:10px;background:var(--card);border:1px solid var(--line);border-radius:10px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+   .contact-section h2{color:var(--gold);margin:0 0 20px}
+   .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+   .contact-btn{padding:0px;border:0px solid var(--line);background:transparent;border-radius:7px;color:var(--gold);text-decoration:none;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:0px;transition:.3s}
+   .contact-btn:hover{background:var(--gold);color:#FFFFFF;transform:translateY(-5px)}
+   .contact-btn svg{width:20px;height:20px;fill:currentColor}
+   
+   input[type="radio"]{
+     appearance: none;
+     -webkit-appearance: none;
+     width: 8px;
+     height: 8px;
+     border: 1px solid #D4AF37;
+     border-radius: 50%;
+     display: inline-block;
+     position: relative;
+     cursor: pointer;
+     margin-left: 6px;
+     vertical-align: middle;
+   }
+   
+   input[type="radio"]:checked{
+     background: #D4AF30;
+     box-shadow: inset 0 0 0 4px #fff;
+   }
+   
+   .order-btn{
+   display:block;
+   text-align:center;
+   margin-top:0;
+   width:50px;
+   height:30px;
+   line-height:30px;
+   padding:0;
+   background:#fff;
+   color:#000;
+   border:1.5px solid var(--gold);
+   border-radius:8px;
+   font-size:0.78rem;
+   font-weight:700;
+   text-decoration:none;
+   box-shadow:0 3px 8px rgba(0,0,0,.06);
+   transition:.25s;
+   }
+   
+   .order-btn:hover{
+   background:#fff;
+   color:#000;
+   transform:translateY(-2px);
+   box-shadow:0 5px 12px rgba(0,0,0,.08);
+   }
+   
+   label{
+   white-space: nowrap;
+   }
+   
+   
+   .product-image-box{
+   height: 350px;
+   display: grid;
+   margin: 0 auto 4px auto;
+   place-items: center;
+   background: #fff;
+   border-radius: 20px;
+   border: 1px solid rgba(212,175,55,.75);
+   overflow: hidden;
+   touch-action: pan-y;
+   cursor: grab;
+   }
+   
+   .product-image-box img{
+   width: 88%;
+   height: 88%;
+   object-fit: contain;
+   transform: scale(1.03);
+   }
+   
+   
+   /* إعداد عام لكل الصور */
+   .product-image-box img{
+   transition: .3s ease;
+   }
+   
+   /* الصورة 1 */
+   #img_1{
+   width: 88%;
+   height: 99%;
+   object-fit: cover;
+   }
+   
+   /* الصورة 2 */
+   #img_2{
+   width: 99%;
+   height: 80%;
+   object-fit: contain;
+   
+   }
+   
+   /* الصورة 3 */
+   #img_3{
+   width: 88%;
+   height: 99%;
+   object-fit: cover;
+   
+   }
+   
+   
+   #img_3{
+   width: 88%;
+   height: 99%;
+   object-fit: contain;
+   
+   }
+   
+   .img-3_1{
+   width: 95%;
+   height: 100%;
+   object-fit: cover;
+   }
+   
+   .img-3_2{
+   width: 99%;
+   height: 110%;
+   object-fit: cover;
+   }
+   
+   .thumbs-3{
+   display:flex;
+   gap:8px;
+   justify-content:center;
+   margin-bottom:12px;
+   flex-wrap:wrap;
+   }
+   
+   #thumb_3_1{
+   width:20px;
+   height:20px;
+   object-fit:cover;
+   border:1px solid var(--gold);
+   border-radius:8px;
+   cursor:pointer;
+   }
+   
+   #thumb_3_2{
+   width:20px;
+   height:20px;
+   object-fit:cover;
+   border:1px solid var(--gold);
+   border-radius:8px;
+   cursor:pointer;
+   }
+   
+   #thumb_3_3{
+   width:20px;
+   height:20px;
+   object-fit:cover;
+   border:1px solid var(--gold);
+   border-radius:8px;
+   cursor:pointer;
+   }
+   
+   
+   .thumbs-side{
+   display: flex;
+   gap: 8px;
+   justify-content: center;
+   margin-bottom: 12px;
+   flex-wrap: wrap;
+   }
+   
+   .thumbs-side img{
+   width: 20px;
+   height: 20px;
+   object-fit: cover;
+   object-position: center;
+   border: 1px solid var(--gold);
+   border-radius: 8px;
+   cursor: pointer;
+   flex: 0 0 auto;
+   }
+   
+   
+   /* الصورة 4 */
+   #img_4{
+   width: 99%;
+   height: 110%;
+   object-fit: center;
+   }
+   
+ #card_7 .product-image-box{
+ width: 98%;
+ height: 340px;
+ overflow: hidden;
+ border-radius: 12px;
+ }
+ 
+ #card_7 .product-image-box img{
+ width: 99%;
+ height: 88%;
+ object-fit: center;
+ 
+ }
+   
+   /* الصورة 5 */
+   #img_5{
+   width: 99%;
+   height: 85%;
+   object-fit: contain;
+   
+   }
+   
+   /* الصورة 6 */
+   #img_6{
+   width: 99%;
+   height: 88%;
+   object-fit: contain;
+   
+   }   
+   
+   .meta div{
+   margin: 0;
+   line-height: 1.2;
+   }
+   
+   .meta{
+   display: grid;
+   gap: 2px;
+   }
+   
+   
+   .card-content{
+   display: flex;
+   flex-direction: column;
+   }
+   
+   .lock-section{
+   order: 1;
+   }
+   
+   .size-section{
+   order: 2;
+   }
+   
+   .card-content{
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   }
+   
+   .lock-section{
+   order: 1;
+   }
+   
+   .size-section{
+   order: 2;
+   }
+   
+   .model-title{
+   font-weight: 700;
+   margin-bottom: 6px;
+   color: var(--gold);
+   }
+   
+   .model-options{
+   display: flex;
+   gap: 10px;
+   flex-wrap: wrap;
+   }
+   
+   #slideshowContainer{
+   width: 100%;
+   height: 160px;
+   overflow: hidden;
+   }
+   
+   .slide-1{
+   width: 100%;
+   height: 160px;
+   }
+   
+   .slide-2{
+   width: 100%;
+   height: 160px;
+   }
+   
+   .slide-3{
+   width: 100%;
+   height: 160px;
+   }
+   
+   
+ .hero-card{
+ position: relative;
+ overflow: hidden;
+ padding: 0 20px;
+ text-align: center;
+ background: var(--panel);
+ border: 1px solid var(--line);
+ border-radius: 20px;
+ margin: 20px 0;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+ }
+    
+    .hero-card__image{
+    position: absolute; /* يضع الصورة فوق/داخل البطاقة بشكل حر */
+    top: 50%; /* ينزل الصورة إلى منتصف البطاقة عموديًا */
+    left: 50%; /* يضع الصورة في منتصف البطاقة أفقيًا */
+    width: 380px; /* يحدد عرض الصورة */
+    height: auto; /* يحافظ على نسبة أبعاد الصورة */
+    transform: translate(-50%, -50%); /* يضبط الصورة لتكون في المنتصف تمامًا */
+    opacity: 0.15; /* يجعل الصورة شفافة */
+    z-index: 0; /* يجعل الصورة في الخلف */
+    pointer-events: none; /* يمنع الصورة من استقبال النقكرات */
+    }
+    
+    .hero-card__overlay{
+    position: absolute; /* يثبت طبقة التغطية داخل البطاقة */
+    inset: 0; /* يجعلها تغطي البطاقة بالكامل */
+    background: transparent; /* لا يضيف لونًا، ويمكن تغييره لاحقًا */
+    z-index: 1; /* يضعها فوق الصورة وتحت المحتوى */
+    }
+    
+    .hero-card__content{
+    position: relative; /* يسمح بظهور المحتوى فوق الطبقات الخلفية */
+    z-index: 2; /* يضع المحتوى في أعلى ترتيب الطبقات */
+    display: flex; /* يستخدم flex لتنسيق العناصر بسهولة */
+    flex-direction: column; /* يجعل العناصر مرتبة عموديًا */
+    justify-content: center; /* يوسّط المحتوى عموديًا */
+    align-items: center; /* يوسّط المحتوى أفقيًا */
+    min-height: 110px; /* يحدد أقل ارتفاع للمحتوى */
+    color: var(--gold); /* لون النص داخل المحتوى */
+    text-align: center; /* يوسّط النص داخل المحتوى */
+    }
+    
+    .hero-card__content h2{
+    margin: 0 0 8px; /* يزيل الهامش العلوي ويضيف مسافة أسفل العنوان */
+    color: var(--gold); /* يجعل لون العنوان ذهبيًا */
+    font-size: 1rem; /* يحدد حجم العنوان */
+    line-height: 1.4; /* يضبط المسافة بين الأسطر */
+    }
+    
+    .hero-card__content p{
+    margin: 0; /* يزيل الهوامش الافتراضية للفقرة */
+    color: var(--muted) !important; /* يحدد لون الفقرة مع أولوية أعلى */
+    font-size: 0.93rem; /* يحدد حجم نص الفقرة */
+    }
+   
+   
+   .contact-section{
+   position: relative; /* يجعل العناصر الداخلية المطلقة تتموضع بالنسبة لهذا القسم */
+   overflow: hidden; /* يخفي أي جزء زائد من الصورة أو الطبقة الشفافة خارج حدود القسم */
+   }
+   
+   .contact-section__bg{
+   position: absolute; /* يثبت الصورة فوق القسم داخل نفس المكان */
+   inset: 0; /* يجعل الصورة تغطي كامل القسم من كل الجهات */
+   width: 100%; /* يجعل عرض الصورة يساوي عرض القسم */
+   height: 99%; /* يجعل ارتفاع الصورة يساوي ارتفاع القسم */
+   object-fit: cover; /* يملأ الصورة كامل المساحة مع الحفاظ على النسبة */
+   opacity: 0.20; /* يقلل شفافية الصورة فقط */
+   z-index: 0; /* يضع الصورة في الخلف */
+   }
+   
+   .contact-section__overlay{
+   position: absolute; /* يثبت طبقة التعتيم فوق الصورة */
+   inset: 0; /* يجعل الطبقة تغطي كامل القسم */
+   background: rgba(0,0,0,0.25); /* لون أسود شفاف لتغميق الصورة قليلًا */
+   z-index: 1; /* يضع الطبقة فوق الصورة وتحت المحتوى */
+   }
+   
+  
+   .contact-section{
+   position: relative; /* يجعل القسم هو المرجع للعناصر التي ستوضع فوقه */
+   overflow: hidden; /* يخفي أي جزء زائد من الصورة أو الطبقة الشفافة خارج حدود القسم */
+   background: #000; /* يضع خلفية سوداء للقسم */
+   padding: 30px 20px; /* يضيف مساحة داخلية حول المحتوى */
+   }
+   
+   .contact-section__bg{
+   position: absolute; /* يضع الصورة داخل القسم بشكل حر فوق الخلفية */
+   inset: 0; /* يجعل الصورة تغطي كامل القسم */
+   width: 100%; /* يجعل عرض الصورة يساوي عرض القسم */
+   height: 99%; /* يجعل ارتفاع الصورة قريبًا من كامل ارتفاع القسم */
+   object-fit: cover; /* يملأ الصورة المساحة بدون تشويه */
+   opacity: 0.35; /* يقلل شفافية الصورة لتظهر الخلفية والنص بوضوح */
+   z-index: 0; /* يضع الصورة في الخلف */
+   }
+   
+   .contact-section__overlay{
+   position: absolute; /* يثبت طبقة التعتيم فوق الصورة */
+   inset: 0; /* يجعل الطبقة تغطي القسم كله */
+   background: rgba(0,0,0,0.25); /* يضيف تغميقًا خفيفًا فوق الصورة */
+   z-index: 1; /* يضع هذه الطبقة فوق الصورة وتحت النص */
+   }
+   
+   .contact-section h2{
+   position: relative; /* يسمح بظهور النص فوق الطبقات الخلفية */
+   z-index: 2; /* يرفع النص فوق الصورة والـ overlay */
+   color: #fff; /* يجعل لون العنوان أبيض */
+   font-size: 20px; /* يحدد حجم العنوان */
+   font-weight: 500; /* يجعل الخط عريضًا */
+   text-align: center; /* يوسّط النص أفقيًا */
+   margin: 0 0 18px; /* يضبط المسافة أسفل العنوان */
+   padding-top: 30px; /* ينزل العنوان قليلًا للأسفل */
+   text-shadow: 0 2px 6px rgba(0,0,0,0.6); /* يزيد وضوح النص فوق الخلفية */
+   }
+   
+   .contact-grid{
+   position: relative; /* يجعل مجموعة الأزرار فوق الطبقات الخلفية */
+   z-index: 2; /* يرفع الأزرار فوق الصورة والـ overlay */
+   display: flex; /* يرتب الأزرار على شكل صف مرن */
+   justify-content: center; /* يوسّط الأزرار في المنتصف */
+   gap: 14px; /* يضع مسافة بين الأزرار */
+   flex-wrap: wrap; /* يسمح بانتقال الأزرار لسطر جديد في الشاشات الصغيرة */
+   }
+   
+   .contact-btn{
+   width: 20px; /* يحدد عرض الزر */
+   height: 20px; /* يحدد ارتفاع الزر */
+   display: flex; /* يوسّط الأيقونة داخله */
+   flex-direction: column; /* يجهز الزر لوضع نص أسفل الأيقونة إذا أردت */
+   align-items: center; /* يوسّط العناصر أفقيًا */
+   justify-content: center; /* يوسّط العناصر عموديًا */
+   gap: 0; /* يلغي الفراغ بين الأيقونة والنص */
+   border-radius: 16px; /* يجعل الحواف ناعمة */
+   background: rgba(255,255,255,0.08); /* خلفية شفافة خفيفة للزر */
+   border: 1px solid rgba(255,255,255,0.15); /* إطار خفيف حول الزر */
+   color: #fff; /* يحدد لون النص والأيقونة */
+   text-decoration: none; /* يلغي خط الرابط */
+   transition: .3s; /* يعطي حركة ناعمة عند التمرير */
+   }
+   
+   .contact-btn:hover{
+   background: rgba(255,255,255,0.18); /* يفتح لون الخلفية عند المرور */
+   transform: translateY(-3px); /* يرفع الزر قليلًا للأعلى */
+   }
+   
+   .contact-btn svg{
+   width: 24px; /* حجم الأيقونة */
+   height: 24px; /* ارتفاع الأيقونة */
+   fill: currentColor; /* يجعل لون الأيقونة يطابق لون الزر */
+   }
+   
+   .contact-btn span{
+   font-size: 12px; /* حجم النص الصغير تحت الأيقونة */
+   color: currentColor; /* يجعل لون النص مطابقًا للون الزر */
+   }
+   
+   @media(max-width:768px){
+     .grid{grid-template-columns:1fr}
+     input{width:100%}
+     .contact-grid{grid-template-columns:1fr}
+   }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand" style="display:flex;align-items:center;gap:10px;font-family:'Cairo',sans-serif">
+        <svg width="50" height="50" viewBox="0 0 100 100">
+          <rect x="5" y="5" width="90" height="90" rx="12" fill="none" stroke="#D4AF37" stroke-width="2.5"/>
+          <rect x="10" y="10" width="80" height="80" rx="8" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
+          <text x="50" y="28" font-family="Arial" font-size="18" font-weight="bold" fill="#D4AF37" text-anchor="middle">متانة</text>
+          <rect x="25" y="35" width="50" height="45" rx="4" fill="none" stroke="#D4AF37" stroke-width="2.5"/>
+          <rect x="28" y="38" width="44" height="39" rx="3" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+          <rect x="38" y="48" width="24" height="15" rx="2" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+          <rect x="41" y="51" width="18" height="9" fill="#D4AF37"/>
+          <circle cx="68" cy="55" r="4" fill="#D4AF37"/>
+          <text x="12" y="18" font-size="8" fill="#D4AF37">✦</text>
+          <text x="88" y="18" font-size="8" fill="#D4AF37">✦</text>
+          <text x="12" y="92" font-size="8" fill="#D4AF37">✦</text>
+          <text x="88" y="92" font-size="8" fill="#D4AF37">✦</text>
+        </svg>
+      </div>
+      <input type="text" id="search" placeholder="بحث..." oninput="filterProducts()">
+    </header>
+   <section class="hero-card">
+   <img src="14.png" alt="خلفية المقدمة" class="hero-card__image">
+   <div class="hero-card__overlay"></div>
+   <div class="hero-card__content">
+  <h2>متانة<br>حماية تليق بممتلكاتك</h2>
+ <p style="color:var(--muted);">"خزنة آمنة، راحة بال"</p>
+   </div>
+   </section>
+    
+    
+      
+   
+
+    <div class="slideshow-container" id="slideshowContainer"></div>
+    <div class="products" id="products"></div>
+
+
+
+
+
+
+    <section class="contact-section">
+    <img src="16.png" alt="تواصل معنا" class="contact-section__bg">
+    
+    <div class="contact-section__overlay"></div>
+    
+    <h2>تواصل معنا</h2>
+    
+    <div class="contact-grid">
+    <a href="https://wa.me/966558687782" class="contact-btn" target="_blank">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+    </a>
+    
+    <a href="https://facebook.com/bdalrhmnahmdsghyralbry?mibextid=ZbWKwL" class="contact-btn" target="_blank">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+    </a>
+    
+    <a href="tel:966558687782" class="contact-btn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.161 15.161 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.59 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/>
+    </svg>
+    </a>
+    </div>
+    </section>
+  </div>
+
+  <script>
+  const selectedKeys = {};
+  const selectedImages = {};
+  const touchState = {};
+  
+  const products = [
+  {
+  cardId: 1,
+  id: 1,
+  name: 'خزن فيتنامي فاخر مقاوم للحريق',
+  category: 'large',
+  lock: '2Key',
+  image: '6.jpg',
+  sizes: [
+  { label: 'GW-120', priceKey: 5750, weight: 'kg 300', image: '4_6.jpg' },
+  { label: 'GW-130', priceKey: 7800, weight: 'kg 400', image: '3_6.jpg' },
+  { label: 'GW-150', priceKey: 8200, weight: 'kg 500', image: '2_6.jpg' },
+  { label: 'GW-170', priceKey: 9700, weight: 'kg 650', image: '1_6.jpg' }
+  ]
+  },
+  {
+  cardId: 2,
+  id: 2,
+  name: 'خزن فيتنامي فاخر مقاوم للحريق',
+  lock: 'Key',
+  image: '4.jpg',
+  sizes: [
+  { label: '1', priceKey: 700, length: 'mm 731', width: 'mm 460', depth: 'mm 620', image: '3_4.jpg' },
+  { label: '2', priceKey: 850, length: 'mm 1031', width: 'mm 460', depth: 'mm 620', image: '2_4.jpg' },
+  { label: '3', priceKey: 978, length: 'mm 1331', width: 'mm 460', depth: 'mm 620', image: '1_4.jpg' }
+  ]
+  },
+  {
+  cardId: 3,
+  id: 3,
+  name: 'خزن فيتنامي فاخر مقاوم للحريق',
+  category: 'small',
+  lock: 'يرجى اختيار نوع القفل المراد',
+  image: '5.jpg',
+  images: ['5.jpg', '5_1.jpg', '5_2.jpg'],
+  sizes: [
+  { label: 'GW-32', priceKey: 900, priceDigital: 1150, weight: 'kg 45', image: '5.jpg' },
+  { label: 'GW-37', priceKey: 1000, priceDigital: 1250, weight: 'kg 65', image: '5.jpg' },
+  { label: 'GW-45', priceKey: 1035, priceDigital: 1285, weight: 'kg 65', image: '5.jpg' },
+  { label: 'GW-50', priceKey: 1200, priceDigital: 1450, weight: 'kg 65', image: '5.jpg' },
+  { label: 'GW-51', priceKey: 1460, priceDigital: 1650, weight: 'kg 80', image: '5.jpg' },
+  { label: 'GW-60', priceKey: 1700, priceDigital: 1950, weight: 'kg 100', image: '5.jpg' },
+  { label: 'GW-67', priceKey: 1955, priceDigital: 2150, weight: 'kg 120', image: '5.jpg' },
+  { label: 'GW-77', priceKey: 3200, priceDigital: 3450, weight: 'kg 140', image: '5.jpg' },
+  { label: 'GW-88', priceKey: 3500, priceDigital: 3750, weight: 'kg 180', image: '5.jpg' },
+  { label: 'GW-100', priceKey: 3800, priceDigital: 4050, weight: 'kg 200', image: '5.jpg' }
+  ]
+  },
+  {
+  cardId: 4,
+  id: 4,
+  name: 'خزن كوري فاخر مقاوم للحريق',
+  category: 'digital',
+  lock: '2Key / Digital',
+  image: '2.jpg',
+  images: ['2.jpg', 2_2.jpg'],
+  sizes: [
+  { label: 'BS-310', priceKey: 1000, priceDigital: 1250, weight: 'kg 37', capacity: 'e 15.12' },
+  { label: 'BS-360', priceKey: 1200, priceDigital: 1450, weight: 'kg 57', capacity: 'e 27.51' },
+  { label: 'BS-500', priceKey: 1200, priceDigital: 1450, weight: 'kg 57', capacity: 'e 27.51' },
+  { label: 'BS-530W', priceKey: 1600, priceDigital: 1850, weight: 'kg 63', capacity: 'e 40.87' },
+  { label: 'BS-610', priceKey: 1900, priceDigital: 2150, weight: 'kg 93', capacity: 'e 45.76' }
+  ]
+  },
+  {
+  cardId: 5,
+  id: 5,
+  name: 'خزن كوري فاخر مقاوم للحريق',
+  category: 'digital',
+  lock: '2Key / Digital',
+  image: '1.jpg',
+  images: ['1.jpg', '1_1.jpg'],
+  sizes: [
+  { label: 'BS-670', priceKey: 2500, priceDigital: 2750, weight: 'kg 105', capacity: '52.45 e' },
+  { label: 'BS-750', priceKey: 2900, priceDigital: 3150, weight: 'kg 140', capacity: '74.00 e' },
+  { label: 'BS-880', priceKey: 3500, priceDigital: 3750, weight: 'kg 180', capacity: '102.48 e' },
+  { label: 'BS-1000', priceKey: 3800, priceDigital: 4050, weight: 'kg 210', capacity: '124.59 e' }
+  ]
+  },
+  {
+  cardId: 6,
+  id: 6,
+  name: 'خزن كوري فاخر مقاوم للحريق',
+  category: 'digital',
+  lock: '2Key / Digital',
+  image: '3.jpg',
+  images: ['3.jpg', '3_3.jpg'],
+  sizes: [
+  { label: 'BS-1200', priceKey: 5750, priceDigital: 6000, weight: '270 kg', capacity: '230.39 e' },
+  { label: 'BS-1400', priceKey: 7700, priceDigital: 7950, weight: '335 kg', capacity: '279.15 e' },
+  { label: 'BS-1700', priceKey: 9700, priceDigital: 9950, weight: '485 kg', capacity: '418.76 e' },
+  { label: 'BS-1750', priceKey: 13800, priceDigital: 14050, weight: '620 kg', capacity: '651.41 e' }
+  ]
+  },
+  {
+  cardId: 7,
+  id: 7,
+  name: 'خزائن كورية فاخرة مقاومة للحريق',
+  category: 'large',
+  lock: '2Key / Digital',
+  image: '7.jpg',
+  images: ['7.jpg', '7_1.jpg'],
+  sizes: [
+  { label: 'BIF-400', priceKey: 7300, priceDigital: 7550,  weight: 'kg 170' },
+  { label: 'BIF-300', priceKey: 5400, priceDigital: 5650, weight: 'kg 245' },
+  { label: 'BIF-200', priceKey: 4600, priceDigital: 4850, weight: 'kg 320' }
+  ]
+  }
+  ];
+  
+  const slides = ["images/10.jpg", "images/11.jpg", "images/12.jpg"];
+  
+  function formatPrice(n) {
+  return n + ' SR';
+  }
+  
+  function filterProducts() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+  const text = card.textContent.toLowerCase();
+  card.style.display = text.includes(q) ? '' : 'none';
+  });
+  }
+  
+  function setCardImage(cardId, src) {
+  const img = document.getElementById('img_' + cardId);
+  if (!img) return;
+  img.src = src;
+  img.className = 'product-main-image';
+  const imageName = src.split('/').pop().replace('.jpg', '');
+  img.classList.add('img-' + imageName);
+  selectedImages[cardId] = src;
+  }
+  
+  function bindSwipe(cardId) {
+  const box = document.getElementById('imgbox_' + cardId);
+  const product = products.find(p => p.cardId === cardId);
+  if (!box || !product) return;
+  
+  const images = product.images || product.sizes.map(s => s.image).filter(Boolean);
+  if (!images.length) return;
+  
+  box.style.touchAction = 'pan-y';
+  
+  const getCurrentIndex = () => {
+  const current = selectedImages[cardId] || product.image || images[0];
+  let idx = images.indexOf(current);
+  if (idx === -1) idx = 0;
+  return idx;
+  };
+  
+  const move = (dir) => {
+  let idx = getCurrentIndex();
+  idx = dir === 'left' ? (idx + 1) % images.length : (idx - 1 + images.length) % images.length;
+  setCardImage(cardId, images[idx]);
+  };
+  
+  box.addEventListener('touchstart', (e) => {
+  touchState[cardId] = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  
+  box.addEventListener('touchend', (e) => {
+  const start = touchState[cardId];
+  if (!start) return;
+  const endX = e.changedTouches[0].clientX;
+  const endY = e.changedTouches[0].clientY;
+  const diffX = endX - start.x;
+  const diffY = endY - start.y;
+  if (Math.abs(diffX) > 40 && Math.abs(diffY) < 80) {
+  move(diffX < 0 ? 'left' : 'right');
+  }
+  touchState[cardId] = null;
+  }, { passive: true });
+  
+  box.addEventListener('mousedown', (e) => {
+  touchState[cardId] = { x: e.clientX, y: e.clientY };
+  });
+  
+  box.addEventListener('mouseup', (e) => {
+  const start = touchState[cardId];
+  if (!start) return;
+  const diffX = e.clientX - start.x;
+  const diffY = e.clientY - start.y;
+  if (Math.abs(diffX) > 40 && Math.abs(diffY) < 80) {
+  move(diffX < 0 ? 'left' : 'right');
+  }
+  touchState[cardId] = null;
+  });
+  }
+  
+  function getCurrentPrice(product, item, cardId) {
+  const keyType = selectedKeys[cardId] || 'مفتاح احتياطي';
+  return keyType === 'مفتاح إلكتروني' || keyType === 'مفتاح مزدوج'
+  ? item.priceDigital
+  : item.priceKey;
+  }
+  
+  function renderSlideshow() {
+  const container = document.getElementById('slideshowContainer');
+  if (!container) return;
+  container.innerHTML = slides.map((src, index) => `
+  <div class="slide">
+  <img class="slide-1" src="images/10.jpg">
+  </div>
+  <div class="slide">
+  <img class="slide-2" src="images/11.jpg">
+  </div>
+  <div class="slide">
+  <img class="slide-3" src="images/12.jpg">
+  </div>
+  `).join('');
+  startSlideshow();
+  }
+  
+  function startSlideshow() {
+  let slideIndex = 0;
+  const slidesEl = document.getElementsByClassName('slide');
+  if (slidesEl.length > 0) {
+  setInterval(() => {
+  slidesEl[slideIndex].style.display = 'none';
+  slideIndex = (slideIndex + 1) % slidesEl.length;
+  slidesEl[slideIndex].style.display = 'block';
+  }, 3000);
+  }
+  }
+  
+  function renderProducts() {
+  const box = document.getElementById('products');
+  if (!box) return;
+  
+  let html = '';
+  
+  products.forEach((p) => {
+  const defaultKey = (p.cardId === 3) ? 'مفتاح احتياطي' : 'مفتاح احتياطي';
+  const defaultPrice = getCurrentPrice(p, p.sizes[0], p.cardId);
+  
+  html += `
+  <div class="card" id="card_${p.cardId}">
+  <div id="imgbox_${p.cardId}" class="product-image-box">
+  <img id="img_${p.cardId}" src="${p.image}" alt="${p.name}">
+  </div>
+  
+  ${[1,2].includes(p.cardId) ? `
+  <div class="thumbs-side">
+  <img src="${p.image}" onclick="setCardImage(${p.cardId}, '${p.image}')">
+  ${p.sizes.map(s => `
+  <img src="${s.image}" onclick="setCardImage(${p.cardId}, '${s.image}')">
+  `).join('')}
+  </div>
+  ` : ''}
+  
+  ${[4,5,6,7].includes(p.cardId) ? `
+  <div class="thumbs-side">
+  <img src="${p.images[0]}" onclick="setCardImage(${p.cardId}, '${p.images[0]}')">
+  <img src="${p.images[1]}" onclick="setCardImage(${p.cardId}, '${p.images[1]}')">
+  </div>
+  ` : ''}
+  
+  ${p.cardId === 3 ? `
+  <div class="thumbs-3">
+  <img id="thumb_3_1" src="${p.images[0]}" onclick="setCardImage(${p.cardId}, '${p.images[0]}')">
+  <img id="thumb_3_2" src="${p.images[1]}" onclick="setCardImage(${p.cardId}, '${p.images[1]}')">
+  <img id="thumb_3_3" src="${p.images[2]}" onclick="setCardImage(${p.cardId}, '${p.images[2]}')">
+  </div>
+  ` : ''}
+  
+  <h3 style="margin:0 0 10px">${p.name}</h3>
+  
+  <div class="meta">
+  <div><b>الموديل:</b> <span id="size_text_${p.cardId}">${p.sizes[0].label}</span></div>
+  <div><b>القفل:</b> <span id="lock_text_${p.cardId}">${p.lock || ''}</span></div>
+  
+  ${p.cardId === 2 ? `
+  <div><b>الطول:</b> <span id="length_text_${p.cardId}">${p.sizes[0].length || ''}</span></div>
+  <div><b>العرض:</b> <span id="width_text_${p.cardId}">${p.sizes[0].width || ''}</span></div>
+  <div><b>العمق:</b> <span id="depth_text_${p.cardId}">${p.sizes[0].depth || ''}</span></div>
+  ` : p.cardId === 4 ? `
+  <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
+  <div><b>السعة:</b> <span id="capacity_text_${p.cardId}">${p.sizes[0].capacity || ''}</span></div>
+  ` : p.cardId === 5 || p.cardId === 6 ? `
+  <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
+  <div><b>السعة:</b> <span id="capacity_text_${p.cardId}">${p.sizes[0].capacity || ''}</span></div>
+  ` : `
+  <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
+  `}
+  </div>
+  
+  <div class="card-content">
+  ${(p.cardId === 3 || p.cardId === 4 || p.cardId === 5 || p.cardId === 6 || p.cardId === 7) ? `
+  <div class="lock-section" style="margin:10px 0">
+  <div style="font-weight:700;margin-bottom:6px;color:var(--gold)">نوع القفل</div>
+  ${p.cardId === 3 ? `
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="مفتاح احتياطي" checked onchange="updateKey(${p.cardId}, this.value)">
+  <span>2Key</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="مفتاح مزدوج" onchange="updateKey(${p.cardId}, this.value)">
+  <span>Key+Digital</span>
+  </label>
+  
+  </div>
+  ` : `
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="مفتاح احتياطي" checked onchange="updateKey(${p.cardId}, this.value)">
+  <span>2Key</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="مفتاح إلكتروني" onchange="updateKey(${p.cardId}, this.value)">
+  <span>Digital</span>
+  </label>
+  </div>
+  `}
+  </div>
+  ` : ''}
+  
+  <div class="size-section" style="margin:0 0 2px">
+  <div class="model-title">الموديل</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+  ${p.sizes.map((s, idx) => `
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer;width:calc(33.33% - 7px)">
+  <input type="radio" name="size_${p.cardId}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateCard(${p.cardId}, this.value)">
+  <span>${s.label}</span>
+  </label>
+  `).join('')}
+  </div>
+  </div>
+  </div>
+  
+  <div class="price" id="price_${p.cardId}">${formatPrice(defaultPrice)}</div>
+  <a href="https://wa.me/9675000000" target="_blank" id="order_btn_${p.cardId}" class="order-btn">طلب</a>
+  </div>
+  `;
+  });
+  
+  box.innerHTML = html;
+  products.forEach(p => {
+  bindSwipe(p.cardId);
+  selectedKeys[p.cardId] = selectedKeys[p.cardId] || 'مفتاح احتياطي';
+  updateKey(p.cardId, selectedKeys[p.cardId]);
+  });
+  }
+  
+  function updateKey(cardId, keyType) {
+  selectedKeys[cardId] = keyType;
+  
+  const product = products.find(p => p.cardId === cardId);
+  if (!product) return;
+  
+  const selectedSize = document.querySelector(`input[name="size_${cardId}"]:checked`);
+  if (!selectedSize) return;
+  
+  const item = product.sizes[Number(selectedSize.value)];
+  if (!item) return;
+  
+  const finalPrice = (keyType === 'مفتاح إلكتروني' || keyType === 'مفتاح مزدوج')
+  ? item.priceDigital
+  : item.priceKey;
+  
+  const priceEl = document.getElementById('price_' + cardId);
+  if (priceEl) priceEl.textContent = formatPrice(finalPrice);
+  
+  const btn = document.getElementById('order_btn_' + cardId);
+  if (btn) {
+  const msg =
+  `أرغب في طلب: ${product.name}
+  المقاس: ${item.label}
+  نوع القفل: ${keyType}
+  السعر: ${formatPrice(finalPrice)}`;
+  btn.href = `https://wa.me/9675000000?text=${encodeURIComponent(msg)}`;
+  }
+  }
+  
+  function updateCard(cardId, index) {
+  const product = products.find(p => p.cardId === cardId);
+  if (!product) return;
+  
+  const item = product.sizes[Number(index)];
+  if (!item) return;
+  
+  document.getElementById('size_text_' + cardId).textContent = item.label;
+  
+  const newImage = item.image || product.image;
+  const img = document.getElementById('img_' + cardId);
+  if (img) img.src = newImage;
+  selectedImages[cardId] = newImage;
+  
+  const keyType = selectedKeys[cardId] || 'مفتاح احتياطي';
+  const finalPrice = (keyType === 'مفتاح إلكتروني' || keyType === 'مفتاح مزدوج')
+  ? item.priceDigital
+  : item.priceKey;
+  
+  const priceEl = document.getElementById('price_' + cardId);
+  if (priceEl) priceEl.textContent = formatPrice(finalPrice);
+  
+  const btn = document.getElementById('order_btn_' + cardId);
+  if (btn) {
+  const msg =
+  `أرغب في طلب: ${product.name}
+  المقاس: ${item.label}
+  نوع القفل: ${keyType}
+  السعر: ${formatPrice(finalPrice)}`;
+  btn.href = `https://wa.me/9675000000?text=${encodeURIComponent(msg)}`;
+  }
+  
+  if (cardId === 2) {
+  document.getElementById('length_text_' + cardId).textContent = item.length || '';
+  document.getElementById('width_text_' + cardId).textContent = item.width || '';
+  document.getElementById('depth_text_' + cardId).textContent = item.depth || '';
+  } else if ([4, 5, 6].includes(cardId)) {
+  document.getElementById('weight_text_' + cardId).textContent = item.weight || '';
+  document.getElementById('capacity_text_' + cardId).textContent = item.capacity || '';
+  } else {
+  document.getElementById('weight_text_' + cardId).textContent = item.weight || '';
+  }
+  
+  if (cardId === 3 && product.images && product.images[Number(index)]) {
+  setCardImage(cardId, product.images[Number(index) % product.images.length]);
+  }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  renderSlideshow();
+  });
+  </script>
+</body>
+</html>  </script>
+</body>
+</html>r(index)]) {
+  setCardImage(cardId, product.images[Number(index) % product.images.length]);
+  }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  renderSlideshow();
+  });
+  </script>
+</body>
+</html>  </script>
+</body>
+</html>

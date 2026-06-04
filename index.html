@@ -600,8 +600,8 @@
     }
 
     function getCurrentPrice(product, item, cardId) {
-      const keyType = selectedKeys[cardId] || 'مفتاح احتياطي';
-      return keyType === 'مفتاح إلكتروني' || keyType === 'مفتاح مزدوج'
+      const keyType = selectedKeys[cardId] || 'Key ';
+      return keyType === 'Digital' || keyType === 'Key+Digital'
         ? item.priceDigital
         : item.priceKey;
     }
@@ -696,22 +696,22 @@
               ${p.cardId === 3 ? `
               <div style="display:flex;gap:10px;flex-wrap:wrap">
                 <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="مفتاح احتياطي" checked onchange="updateKey(${p.cardId}, this.value)">
+                  <input type="radio" name="key_${p.cardId}" value="Key " checked onchange="updateKey(${p.cardId}, this.value)">
                   <span>2Key</span>
                 </label>
                 <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="مفتاح مزدوج" onchange="updateKey(${p.cardId}, this.value)">
+                  <input type="radio" name="key_${p.cardId}" value="Key+Digital " onchange="updateKey(${p.cardId}, this.value)">
                   <span>Key+Digital</span>
                 </label>
               </div>
               ` : `
               <div style="display:flex;gap:10px;flex-wrap:wrap">
                 <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="مفتاح احتياطي" checked onchange="updateKey(${p.cardId}, this.value)">
+                  <input type="radio" name="key_${p.cardId}" value="Key " checked onchange="updateKey(${p.cardId}, this.value)">
                   <span>2Key</span>
                 </label>
                 <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="مفتاح إلكتروني" onchange="updateKey(${p.cardId}, this.value)">
+                  <input type="radio" name="key_${p.cardId}" value="Digital " onchange="updateKey(${p.cardId}, this.value)">
                   <span>Digital</span>
                 </label>
               </div>
@@ -741,7 +741,7 @@
       box.innerHTML = html;
       products.forEach(p => {
         bindSwipe(p.cardId);
-        selectedKeys[p.cardId] = selectedKeys[p.cardId] || 'مفتاح احتياطي';
+        selectedKeys[p.cardId] = selectedKeys[p.cardId] || 'Key ';
         updateKey(p.cardId, selectedKeys[p.cardId]);
       });
     }
@@ -757,7 +757,7 @@
       const item = product.sizes[Number(selectedSize.value)];
       if (!item) return;
 
-      const finalPrice = (keyType === 'مفتاح إلكتروني' || keyType === 'مفتاح مزدوج')
+      const finalPrice = (keyType === 'Digital ' || keyType === 'Key+Digital ')
         ? item.priceDigital
         : item.priceKey;
 
@@ -788,8 +788,8 @@
       if (img) img.src = newImage;
       selectedImages[cardId] = newImage;
 
-      const keyType = selectedKeys[cardId] || 'مفتاح احتياطي';
-      const finalPrice = (keyType === 'مفتاح إلكتروني' || keyType === 'مفتاح مزدوج')
+      const keyType = selectedKeys[cardId] || 'Key ';
+      const finalPrice = (keyType === 'Digital ' || keyType === 'Key+Digital ')
         ? item.priceDigital
         : item.priceKey;
 

@@ -139,13 +139,11 @@
      touch-action:pan-y;
      cursor:grab;
    }
-   
    .product-image-box img{
-     width:88%;
-     height:88%;
-     object-fit:contain;
-     transform:scale(1.03);
-     transition:.3s ease;
+   width: 88%;
+   height: 88%;
+   object-fit: contain;
+   transform: none !important;
    }
    
    #img_1{width:88%;height:99%;object-fit:cover;}
@@ -153,6 +151,8 @@
    #img_3{width:88%;height:99%;object-fit:contain;}
    .img-3_1{width:95%;height:100%;object-fit:cover;}
    .img-3_2{width:99%;height:110%;object-fit:cover;}
+   
+   
    
    .thumbs-3{
      display:flex;
@@ -340,6 +340,36 @@
      color:currentColor;
    }
    
+/* البطاقة 3 */
+#card_3 img.img-3-1{ width:75%; height:75%; object-fit:contain; }
+#card_3 img.img-3-2{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-3{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-4{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-5{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-6{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-7{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-8{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-9{ width:80%; height:80%; object-fit:contain; }
+#card_3 img.img-3-10{ width:80%; height:80%; object-fit:contain; }
+
+/* البطاقة 4 */
+#card_4 img.img-4-1{ width:70%; height:70%; object-fit:contain; }
+#card_4 img.img-4-2{ width:70%; height:70%; object-fit:contain; }
+#card_4 img.img-4-3{ width:70%; height:70%; object-fit:contain; }
+#card_4 img.img-4-4{ width:60%; height:60%; object-fit:contain; }
+#card_4 img.img-4-5{ width:60%; height:60%; object-fit:contain; }
+
+/* البطاقة 5 */
+#card_5 img.img-5-1{ width:70%; height:70%; object-fit:contain; }
+#card_5 img.img-5-2{ width:70%; height:70%; object-fit:contain; }
+#card_5 img.img-5-3{ width:70%; height:70%; object-fit:contain; }
+#card_5 img.img-5-4{ width:70%; height:70%; object-fit:contain; }
+
+/* البطاقة 6 */
+#card_6 img.img-6-1{ width:80%; height:80%; object-fit:contain; }
+#card_6 img.img-6-2{ width:80%; height:80%; object-fit:contain; }
+#card_6 img.img-6-3{ width:80%; height:80%; object-fit:contain; }
+#card_6 img.img-6-4{ width:80%; height:80%; object-fit:contain; }
    @media(max-width:768px){
      .grid{grid-template-columns:1fr}
      input{width:100%}
@@ -406,425 +436,442 @@
   </div>
 
   <script>
-    const selectedKeys = {};
-    const selectedImages = {};
-    const touchState = {};
-
-    const products = [
-      {
-        cardId: 1,
-        id: 1,
-        name: 'خزن فيتنامي فاخر مقاوم للحريق',
-        category: 'large',
-        lock: '2Key',
-        image: '6.jpg',
-        sizes: [
-          { label: 'GW-120', priceKey: 5750, weight: 'kg 300', image: '4_6.jpg' },
-          { label: 'GW-130', priceKey: 7800, weight: 'kg 400', image: '3_6.jpg' },
-          { label: 'GW-150', priceKey: 8200, weight: 'kg 500', image: '2_6.jpg' },
-          { label: 'GW-170', priceKey: 9700, weight: 'kg 650', image: '1_6.jpg' }
-        ]
-      },
-      {
-        cardId: 2,
-        id: 2,
-        name: 'خزن فيتنامي فاخر مقاوم للحريق',
-        lock: 'Key',
-        image: '4.jpg',
-        sizes: [
-          { label: '1', priceKey: 700, length: 'mm 731', width: 'mm 460', depth: 'mm 620', image: '3_4.jpg' },
-          { label: '2', priceKey: 850, length: 'mm 1031', width: 'mm 460', depth: 'mm 620', image: '2_4.jpg' },
-          { label: '3', priceKey: 978, length: 'mm 1331', width: 'mm 460', depth: 'mm 620', image: '1_4.jpg' }
-        ]
-      },
-      {
-        cardId: 3,
-        id: 3,
-        name: 'خزن فيتنامي فاخر مقاوم للحريق',
-        category: 'small',
-        lock: 'يرجى اختيار نوع القفل المراد',
-        image: '5.jpg',
-        images: ['5.jpg', '5_1.jpg', '5_2.jpg'],
-        sizes: [
-          { label: 'GW-32', priceKey: 900, priceDigital: 1150, weight: 'kg 45', image: '5.jpg' },
-          { label: 'GW-37', priceKey: 1000, priceDigital: 1250, weight: 'kg 65', image: '5.jpg' },
-          { label: 'GW-45', priceKey: 1035, priceDigital: 1285, weight: 'kg 65', image: '5.jpg' },
-          { label: 'GW-50', priceKey: 1200, priceDigital: 1450, weight: 'kg 65', image: '5.jpg' },
-          { label: 'GW-51', priceKey: 1460, priceDigital: 1650, weight: 'kg 80', image: '5.jpg' },
-          { label: 'GW-60', priceKey: 1700, priceDigital: 1950, weight: 'kg 100', image: '5.jpg' },
-          { label: 'GW-67', priceKey: 1955, priceDigital: 2150, weight: 'kg 120', image: '5.jpg' },
-          { label: 'GW-77', priceKey: 3200, priceDigital: 3450, weight: 'kg 140', image: '5.jpg' },
-          { label: 'GW-88', priceKey: 3500, priceDigital: 3750, weight: 'kg 180', image: '5.jpg' },
-          { label: 'GW-100', priceKey: 3800, priceDigital: 4050, weight: 'kg 200', image: '5.jpg' }
-        ]
-      },
-      {
-        cardId: 4,
-        id: 4,
-        name: 'خزن كوري فاخر مقاوم للحريق',
-        category: 'digital',
-        lock: '2Key / Digital',
-        image: '2.jpg',
-        images: ['2.jpg', '2_2.jpg'],
-        sizes: [
-          { label: 'BS-310', priceKey: 1000, priceDigital: 1250, weight: 'kg 37', capacity: 'e 15.12' },
-          { label: 'BS-360', priceKey: 1200, priceDigital: 1450, weight: 'kg 57', capacity: 'e 27.51' },
-          { label: 'BS-500', priceKey: 1200, priceDigital: 1450, weight: 'kg 57', capacity: 'e 27.51' },
-          { label: 'BS-530W', priceKey: 1600, priceDigital: 1850, weight: 'kg 63', capacity: 'e 40.87' },
-          { label: 'BS-610', priceKey: 1900, priceDigital: 2150, weight: 'kg 93', capacity: 'e 45.76' }
-        ]
-      },
-      {
-        cardId: 5,
-        id: 5,
-        name: 'خزن كوري فاخر مقاوم للحريق',
-        category: 'digital',
-        lock: '2Key / Digital',
-        image: '1.jpg',
-        images: ['1.jpg', '1_1.jpg'],
-        sizes: [
-          { label: 'BS-670', priceKey: 2500, priceDigital: 2750, weight: 'kg 105', capacity: '52.45 e' },
-          { label: 'BS-750', priceKey: 2900, priceDigital: 3150, weight: 'kg 140', capacity: '74.00 e' },
-          { label: 'BS-880', priceKey: 3500, priceDigital: 3750, weight: 'kg 180', capacity: '102.48 e' },
-          { label: 'BS-1000', priceKey: 3800, priceDigital: 4050, weight: 'kg 210', capacity: '124.59 e' }
-        ]
-      },
-      {
-        cardId: 6,
-        id: 6,
-        name: 'خزن كوري فاخر مقاوم للحريق',
-        category: 'digital',
-        lock: '2Key / Digital',
-        image: '3.jpg',
-        images: ['3.jpg', '3_3.jpg'],
-        sizes: [
-          { label: 'BS-1200', priceKey: 5750, priceDigital: 6000, weight: '270 kg', capacity: '230.39 e' },
-          { label: 'BS-1400', priceKey: 7700, priceDigital: 7950, weight: '335 kg', capacity: '279.15 e' },
-          { label: 'BS-1700', priceKey: 9700, priceDigital: 9950, weight: '485 kg', capacity: '418.76 e' },
-          { label: 'BS-1750', priceKey: 13800, priceDigital: 14050, weight: '620 kg', capacity: '651.41 e' }
-        ]
-      },
-      {
-        cardId: 7,
-        id: 7,
-        name: 'خزائن كورية فاخرة مقاومة للحريق',
-        category: 'large',
-        lock: '2Key / Digital',
-        image: '7.jpg',
-        images: ['7.jpg', '7_1.jpg'],
-        sizes: [
-          { label: 'BIF-400', priceKey: 7300, priceDigital: 7550, weight: 'kg 170' },
-          { label: 'BIF-300', priceKey: 5400, priceDigital: 5650, weight: 'kg 245' },
-          { label: 'BIF-200', priceKey: 4600, priceDigital: 4850, weight: 'kg 320' }
-        ]
-      }
-    ];
-
-    const slides = ["images/10.jpg", "images/11.jpg", "images/12.jpg"];
-
-    function formatPrice(n) { return n + ' SR'; }
-
-    function filterProducts() {
-      const q = document.getElementById('search').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        card.style.display = text.includes(q) ? '' : 'none';
-      });
-    }
-
-    function setCardImage(cardId, src) {
-      const img = document.getElementById('img_' + cardId);
-      if (!img) return;
-      img.src = src;
-      img.className = 'product-main-image';
-      const imageName = src.split('/').pop().replace('.jpg', '');
-      img.classList.add('img-' + imageName);
-      selectedImages[cardId] = src;
-    }
-
-    function bindSwipe(cardId) {
-      const box = document.getElementById('imgbox_' + cardId);
-      const product = products.find(p => p.cardId === cardId);
-      if (!box || !product) return;
-
-      const images = product.images || product.sizes.map(s => s.image).filter(Boolean);
-      if (!images.length) return;
-
-      box.style.touchAction = 'pan-y';
-
-      const getCurrentIndex = () => {
-        const current = selectedImages[cardId] || product.image || images[0];
-        let idx = images.indexOf(current);
-        if (idx === -1) idx = 0;
-        return idx;
-      };
-
-      const move = (dir) => {
-        let idx = getCurrentIndex();
-        idx = dir === 'left' ? (idx + 1) % images.length : (idx - 1 + images.length) % images.length;
-        setCardImage(cardId, images[idx]);
-      };
-
-      box.addEventListener('touchstart', (e) => {
-        touchState[cardId] = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      }, { passive: true });
-
-      box.addEventListener('touchend', (e) => {
-        const start = touchState[cardId];
-        if (!start) return;
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-        const diffX = endX - start.x;
-        const diffY = endY - start.y;
-        if (Math.abs(diffX) > 40 && Math.abs(diffY) < 80) {
-          move(diffX < 0 ? 'left' : 'right');
-        }
-        touchState[cardId] = null;
-      }, { passive: true });
-
-      box.addEventListener('mousedown', (e) => {
-        touchState[cardId] = { x: e.clientX, y: e.clientY };
-      });
-
-      box.addEventListener('mouseup', (e) => {
-        const start = touchState[cardId];
-        if (!start) return;
-        const diffX = e.clientX - start.x;
-        const diffY = e.clientY - start.y;
-        if (Math.abs(diffX) > 40 && Math.abs(diffY) < 80) {
-          move(diffX < 0 ? 'left' : 'right');
-        }
-        touchState[cardId] = null;
-      });
-    }
-
-    function getCurrentPrice(product, item, cardId) {
-      const keyType = selectedKeys[cardId] || 'Key ';
-      return keyType === 'Digital' || keyType === 'Key+Digital'
-        ? item.priceDigital
-        : item.priceKey;
-    }
-
-    function renderSlideshow() {
-      const container = document.getElementById('slideshowContainer');
-      if (!container) return;
-      container.innerHTML = `
-        <div class="slide"><img class="slide-1" src="images/10.jpg" alt=""></div>
-        <div class="slide"><img class="slide-2" src="images/11.jpg" alt=""></div>
-        <div class="slide"><img class="slide-3" src="images/12.jpg" alt=""></div>
-      `;
-      startSlideshow();
-    }
-
-    function startSlideshow() {
-      let slideIndex = 0;
-      const slidesEl = document.getElementsByClassName('slide');
-      if (slidesEl.length > 0) {
-        slidesEl[0].style.display = 'block';
-        setInterval(() => {
-          slidesEl[slideIndex].style.display = 'none';
-          slideIndex = (slideIndex + 1) % slidesEl.length;
-          slidesEl[slideIndex].style.display = 'block';
-        }, 3000);
-      }
-    }
-
-    function renderProducts() {
-      const box = document.getElementById('products');
-      if (!box) return;
-      let html = '';
-
-      products.forEach((p) => {
-        const defaultPrice = getCurrentPrice(p, p.sizes[0], p.cardId);
-
-        html += `
-        <div class="card" id="card_${p.cardId}">
-          <div id="imgbox_${p.cardId}" class="product-image-box">
-            <img id="img_${p.cardId}" src="${p.image}" alt="${p.name}">
-          </div>
-
-          ${[1,2].includes(p.cardId) ? `
-          <div class="thumbs-side">
-            <img src="${p.image}" onclick="setCardImage(${p.cardId}, '${p.image}')">
-            ${p.sizes.map(s => `
-              <img src="${s.image}" onclick="setCardImage(${p.cardId}, '${s.image}')">
-            `).join('')}
-          </div>
-          ` : ''}
-
-          ${[4,5,6,7].includes(p.cardId) ? `
-          <div class="thumbs-side">
-            <img src="${p.images[0]}" onclick="setCardImage(${p.cardId}, '${p.images[0]}')">
-            <img src="${p.images[1]}" onclick="setCardImage(${p.cardId}, '${p.images[1]}')">
-          </div>
-          ` : ''}
-
-          ${p.cardId === 3 ? `
-          <div class="thumbs-3">
-            <img id="thumb_3_1" src="${p.images[0]}" onclick="setCardImage(${p.cardId}, '${p.images[0]}')">
-            <img id="thumb_3_2" src="${p.images[1]}" onclick="setCardImage(${p.cardId}, '${p.images[1]}')">
-            <img id="thumb_3_3" src="${p.images[2]}" onclick="setCardImage(${p.cardId}, '${p.images[2]}')">
-          </div>
-          ` : ''}
-
-          <h3 style="margin:0 0 10px">${p.name}</h3>
-
-          <div class="meta">
-            <div><b>الموديل:</b> <span id="size_text_${p.cardId}">${p.sizes[0].label}</span></div>
-            <div><b>القفل:</b> <span id="lock_text_${p.cardId}">${p.lock || ''}</span></div>
-
-            ${p.cardId === 2 ? `
-            <div><b>الطول:</b> <span id="length_text_${p.cardId}">${p.sizes[0].length || ''}</span></div>
-            <div><b>العرض:</b> <span id="width_text_${p.cardId}">${p.sizes[0].width || ''}</span></div>
-            <div><b>العمق:</b> <span id="depth_text_${p.cardId}">${p.sizes[0].depth || ''}</span></div>
-            ` : p.cardId === 4 ? `
-            <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
-            <div><b>السعة:</b> <span id="capacity_text_${p.cardId}">${p.sizes[0].capacity || ''}</span></div>
-            ` : p.cardId === 5 || p.cardId === 6 ? `
-            <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
-            <div><b>السعة:</b> <span id="capacity_text_${p.cardId}">${p.sizes[0].capacity || ''}</span></div>
-            ` : `
-            <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
-            `}
-          </div>
-
-          <div class="card-content">
-            ${(p.cardId === 3 || p.cardId === 4 || p.cardId === 5 || p.cardId === 6 || p.cardId === 7) ? `
-            <div class="lock-section" style="margin:10px 0">
-              <div style="font-weight:700;margin-bottom:6px;color:var(--gold)">نوع القفل</div>
-              ${p.cardId === 3 ? `
-              <div style="display:flex;gap:10px;flex-wrap:wrap">
-                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="Key " checked onchange="updateKey(${p.cardId}, this.value)">
-                  <span>2Key</span>
-                </label>
-                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="Key+Digital " onchange="updateKey(${p.cardId}, this.value)">
-                  <span>Key+Digital</span>
-                </label>
-              </div>
-              ` : `
-              <div style="display:flex;gap:10px;flex-wrap:wrap">
-                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="Key " checked onchange="updateKey(${p.cardId}, this.value)">
-                  <span>2Key</span>
-                </label>
-                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
-                  <input type="radio" name="key_${p.cardId}" value="Digital " onchange="updateKey(${p.cardId}, this.value)">
-                  <span>Digital</span>
-                </label>
-              </div>
-              `}
-            </div>
-            ` : ''}
-
-            <div class="size-section" style="margin:0 0 2px">
-              <div class="model-title">الموديل</div>
-              <div style="display:flex;gap:10px;flex-wrap:wrap">
-                ${p.sizes.map((s, idx) => `
-                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;width:calc(33.33% - 7px)">
-                  <input type="radio" name="size_${p.cardId}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateCard(${p.cardId}, this.value)">
-                  <span>${s.label}</span>
-                </label>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-
-          <div class="price" id="price_${p.cardId}">${formatPrice(defaultPrice)}</div>
-          <a href="https://wa.me/966558687782" target="_blank" id="order_btn_${p.cardId}" class="order-btn">طلب</a>
-        </div>
-        `;
-      });
-
-      box.innerHTML = html;
-      products.forEach(p => {
-        bindSwipe(p.cardId);
-        selectedKeys[p.cardId] = selectedKeys[p.cardId] || 'Key ';
-        updateKey(p.cardId, selectedKeys[p.cardId]);
-      });
-    }
-
-    function updateKey(cardId, keyType) {
-      selectedKeys[cardId] = keyType;
-      const product = products.find(p => p.cardId === cardId);
-      if (!product) return;
-
-      const selectedSize = document.querySelector(`input[name="size_${cardId}"]:checked`);
-      if (!selectedSize) return;
-
-      const item = product.sizes[Number(selectedSize.value)];
-      if (!item) return;
-
-      const finalPrice = (keyType === 'Digital ' || keyType === 'Key+Digital ')
-        ? item.priceDigital
-        : item.priceKey;
-
-      const priceEl = document.getElementById('price_' + cardId);
-      if (priceEl) priceEl.textContent = formatPrice(finalPrice);
-
-      const btn = document.getElementById('order_btn_' + cardId);
-      if (btn) {
-        const msg = `أرغب في طلب: ${product.name}
-المقاس: ${item.label}
-نوع القفل: ${keyType}
-السعر: ${formatPrice(finalPrice)}`;
-        btn.href = `https://wa.me/966558687782?text=${encodeURIComponent(msg)}`;
-      }
-    }
-
-    function updateCard(cardId, index) {
-      const product = products.find(p => p.cardId === cardId);
-      if (!product) return;
-
-      const item = product.sizes[Number(index)];
-      if (!item) return;
-
-      document.getElementById('size_text_' + cardId).textContent = item.label;
-
-      const newImage = item.image || product.image;
-      const img = document.getElementById('img_' + cardId);
-      if (img) img.src = newImage;
-      selectedImages[cardId] = newImage;
-
-      const keyType = selectedKeys[cardId] || 'Key ';
-      const finalPrice = (keyType === 'Digital ' || keyType === 'Key+Digital ')
-        ? item.priceDigital
-        : item.priceKey;
-
-      const priceEl = document.getElementById('price_' + cardId);
-      if (priceEl) priceEl.textContent = formatPrice(finalPrice);
-
-      const btn = document.getElementById('order_btn_' + cardId);
-      if (btn) {
-        const msg = `أرغب في طلب: ${product.name}
-المقاس: ${item.label}
-نوع القفل: ${keyType}
-السعر: ${formatPrice(finalPrice)}`;
-        btn.href = `https://wa.me/966558687782?text=${encodeURIComponent(msg)}`;
-      }
-
-      if (cardId === 2) {
-        document.getElementById('length_text_' + cardId).textContent = item.length || '';
-        document.getElementById('width_text_' + cardId).textContent = item.width || '';
-        document.getElementById('depth_text_' + cardId).textContent = item.depth || '';
-      } else if ([4, 5, 6].includes(cardId)) {
-        document.getElementById('weight_text_' + cardId).textContent = item.weight || '';
-        document.getElementById('capacity_text_' + cardId).textContent = item.capacity || '';
-      } else {
-        document.getElementById('weight_text_' + cardId).textContent = item.weight || '';
-      }
-
-      if (cardId === 3 && product.images && product.images[Number(index)]) {
-        setCardImage(cardId, product.images[Number(index) % product.images.length]);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderProducts();
-      renderSlideshow();
-    });
+  const selectedKeys = {};
+  const selectedImages = {};
+  const touchState = {};
+  
+  const products = [
+  {
+  cardId: 1,
+  id: 1,
+  name: 'خزن فيتنامي فاخر مقاوم للحريق',
+  category: 'large',
+  lock: '2Key',
+  image: '6.jpg',
+  sizes: [
+  { label: 'GW-120', priceKey: 5750, weight: 'kg 300', image: '4_6.jpg' },
+  { label: 'GW-130', priceKey: 7800, weight: 'kg 400', image: '3_6.jpg' },
+  { label: 'GW-150', priceKey: 8200, weight: 'kg 500', image: '2_6.jpg' },
+  { label: 'GW-170', priceKey: 9700, weight: 'kg 650', image: '1_6.jpg' }
+  ]
+  },
+  {
+  cardId: 2,
+  id: 2,
+  name: 'خزن فيتنامي فاخر مقاوم للحريق',
+  lock: 'Key',
+  image: '4.jpg',
+  sizes: [
+  { label: '1', priceKey: 700, length: 'mm 731', width: 'mm 460', depth: 'mm 620', image: '3_4.jpg' },
+  { label: '2', priceKey: 850, length: 'mm 1031', width: 'mm 460', depth: 'mm 620', image: '2_4.jpg' },
+  { label: '3', priceKey: 978, length: 'mm 1331', width: 'mm 460', depth: 'mm 620', image: '1_4.jpg' }
+  ]
+  },
+  {
+  cardId: 3,
+  id: 3,
+  name: 'خزن فيتنامي فاخر مقاوم للحريق',
+  category: 'small',
+  lock: 'يرجى اختيار نوع القفل المراد',
+  image: '5.jpg',
+  images: ['5-1.jpg', '5-2.jpg', '5-3.jpg', '5-4.jpg', '5-5.jpg', '5-6.jpg', '5-7.jpg', '5-8.jpg', '5-9.jpg', '5-10.jpg'],
+  sizes: [
+  { label: 'GW-32', priceKey: 900, priceDigital: 1150, weight: 'kg 45', image: '5-1.jpg' },
+  { label: 'GW-37', priceKey: 1000, priceDigital: 1250, weight: 'kg 65', image: '5-2.jpg' },
+  { label: 'GW-45', priceKey: 1035, priceDigital: 1285, weight: 'kg 65', image: '5-3.jpg' },
+  { label: 'GW-50', priceKey: 1200, priceDigital: 1450, weight: 'kg 65', image: '5-4.jpg' },
+  { label: 'GW-51', priceKey: 1460, priceDigital: 1650, weight: 'kg 80', image: '5-5.jpg' },
+  { label: 'GW-60', priceKey: 1700, priceDigital: 1950, weight: 'kg 100', image: '5-6.jpg' },
+  { label: 'GW-67', priceKey: 1955, priceDigital: 2150, weight: 'kg 120', image: '5-7.jpg' },
+  { label: 'GW-77', priceKey: 3200, priceDigital: 3450, weight: 'kg 140', image: '5-8.jpg' },
+  { label: 'GW-88', priceKey: 3500, priceDigital: 3750, weight: 'kg 180', image: '5-9.jpg' },
+  { label: 'GW-100', priceKey: 3800, priceDigital: 4050, weight: 'kg 200', image: '5-10.jpg' }
+  ]
+  },
+  {
+  cardId: 4,
+  id: 4,
+  name: 'خزن كوري فاخر مقاوم للحريق',
+  category: 'digital',
+  lock: '2Key / Digital',
+  image: '2.jpg',
+  images: ['2.jpg', '2_2.jpg', '2-1.jpg', '2-2.jpg', '2-3.jpg', '2-4.jpg', '2-5.jpg'],
+  sizes: [
+  { label: 'BS-310', priceKey: 1000, priceDigital: 1250, weight: 'kg 37', capacity: 'e 15.12', image: '2-1.jpg' },
+  { label: 'BS-360', priceKey: 1200, priceDigital: 1450, weight: 'kg 57', capacity: 'e 27.51', image: '2-2.jpg' },
+  { label: 'BS-500', priceKey: 1200, priceDigital: 1450, weight: 'kg 57', capacity: 'e 27.51', image: '2-3.jpg' },
+  { label: 'BS-530W', priceKey: 1600, priceDigital: 1850, weight: 'kg 63', capacity: 'e 40.87', image: '2-4.jpg' },
+  { label: 'BS-610', priceKey: 1900, priceDigital: 2150, weight: 'kg 93', capacity: 'e 45.76', image: '2-5.jpg' }
+  ]
+  },
+  {
+  cardId: 5,
+  id: 5,
+  name: 'خزن كوري فاخر مقاوم للحريق',
+  category: 'digital',
+  lock: '2Key / Digital',
+  image: '1.jpg',
+  images: ['1.jpg', '1_1.jpg', '1-2.jpg', '1-3.jpg', '1-4.jpg', '1-5.jpg'],
+  sizes: [
+  { label: 'BS-670', priceKey: 2500, priceDigital: 2750, weight: 'kg 105', capacity: '52.45 e', image: '1-2.jpg' },
+  { label: 'BS-750', priceKey: 2900, priceDigital: 3150, weight: 'kg 140', capacity: '74.00 e', image: '1-3.jpg' },
+  { label: 'BS-880', priceKey: 3500, priceDigital: 3750, weight: 'kg 180', capacity: '102.48 e', image: '1-4.jpg' },
+  { label: 'BS-1000', priceKey: 3800, priceDigital: 4050, weight: 'kg 210', capacity: '124.59 e', image: '1-5.jpg' }
+  ]
+  },
+  {
+  cardId: 6,
+  id: 6,
+  name: 'خزن كوري فاخر مقاوم للحريق',
+  category: 'digital',
+  lock: '2Key / Digital',
+  image: '3.jpg',
+  images: ['3.jpg', '3_3.jpg', '3-4.jpg', '3-5.jpg', '3-6.jpg', '3-7.jpg'],
+  sizes: [
+  { label: 'BS-1200', priceKey: 5750, priceDigital: 6000, weight: '270 kg', capacity: '230.39 e', image: '3-4.jpg' },
+  { label: 'BS-1400', priceKey: 7700, priceDigital: 7950, weight: '335 kg', capacity: '279.15 e', image: '3-5.jpg' },
+  { label: 'BS-1700', priceKey: 9700, priceDigital: 9950, weight: '485 kg', capacity: '418.76 e', image: '3-6.jpg' },
+  { label: 'BS-1750', priceKey: 13800, priceDigital: 14050, weight: '620 kg', capacity: '651.41 e', image: '3-7.jpg' }
+  ]
+  },
+  {
+  cardId: 7,
+  id: 7,
+  name: 'خزائن كورية فاخرة مقاومة للحريق',
+  category: 'large',
+  lock: '2Key / Digital',
+  image: '7.jpg',
+  images: ['7.jpg', '7_1.jpg', '7-3.png', '7-4.png', '7-5.png'],
+  sizes: [
+  { label: 'BIF-400', priceKey: 7300, priceDigital: 7550, weight: 'kg 170', image: '7-4.png' },
+  { label: 'BIF-300', priceKey: 5400, priceDigital: 5650, weight: 'kg 245', image: '7-3.png' },
+  { label: 'BIF-200', priceKey: 4600, priceDigital: 4850, weight: 'kg 320', image: '7-5.png' }
+  ]
+  }
+  ];
+  
+  function formatPrice(n) {
+  return n + ' SR';
+  }
+  
+  function filterProducts() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(card => {
+  card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+  }
+  
+  function setCardImage(cardId, src) {
+  const img = document.getElementById('img_' + cardId);
+  if (!img) return;
+  
+  img.src = src;
+  selectedImages[cardId] = src;
+  
+  img.className = '';
+  
+  // البطاقة 3
+  if(cardId === 3){
+  if(src.includes('5-1.jpg')) img.classList.add('img-3-1');
+  if(src.includes('5-2.jpg')) img.classList.add('img-3-2');
+  if(src.includes('5-3.jpg')) img.classList.add('img-3-3');
+  if(src.includes('5-4.jpg')) img.classList.add('img-3-4');
+  if(src.includes('5-5.jpg')) img.classList.add('img-3-5');
+  if(src.includes('5-6.jpg')) img.classList.add('img-3-6');
+  if(src.includes('5-7.jpg')) img.classList.add('img-3-7');
+  if(src.includes('5-8.jpg')) img.classList.add('img-3-8');
+  if(src.includes('5-9.jpg')) img.classList.add('img-3-9');
+  if(src.includes('5-10.jpg')) img.classList.add('img-3-10');
+  }
+  
+  // البطاقة 4
+  if(cardId === 4){
+  if(src.includes('2-1.jpg')) img.classList.add('img-4-1');
+  if(src.includes('2-2.jpg')) img.classList.add('img-4-2');
+  if(src.includes('2-3.jpg')) img.classList.add('img-4-3');
+  if(src.includes('2-4.jpg')) img.classList.add('img-4-4');
+  if(src.includes('2-5.jpg')) img.classList.add('img-4-5');
+  }
+  
+  // البطاقة 5
+  if(cardId === 5){
+  if(src.includes('1-2.jpg')) img.classList.add('img-5-1');
+  if(src.includes('1-3.jpg')) img.classList.add('img-5-2');
+  if(src.includes('1-4.jpg')) img.classList.add('img-5-3');
+  if(src.includes('1-5.jpg')) img.classList.add('img-5-4');
+  }
+  
+  // البطاقة 6
+  if(cardId === 6){
+  if(src.includes('3-4.jpg')) img.classList.add('img-6-1');
+  if(src.includes('3-5.jpg')) img.classList.add('img-6-2');
+  if(src.includes('3-6.jpg')) img.classList.add('img-6-3');
+  if(src.includes('3-7.jpg')) img.classList.add('img-6-4');
+  }
+  }
+  
+  function bindSwipe(cardId) {
+  const box = document.getElementById('imgbox_' + cardId);
+  const product = products.find(p => p.cardId === cardId);
+  if (!box || !product) return;
+  
+  const images = product.images || product.sizes.map(s => s.image).filter(Boolean);
+  if (!images.length) return;
+  
+  box.style.touchAction = 'pan-y';
+  
+  const getCurrentIndex = () => {
+  const current = selectedImages[cardId] || product.image || images[0];
+  let idx = images.indexOf(current);
+  if (idx === -1) idx = 0;
+  return idx;
+  };
+  
+  const move = (dir) => {
+  let idx = getCurrentIndex();
+  idx = dir === 'left' ? (idx + 1) % images.length : (idx - 1 + images.length) % images.length;
+  setCardImage(cardId, images[idx]);
+  };
+  
+  box.addEventListener('touchstart', (e) => {
+  touchState[cardId] = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  
+  box.addEventListener('touchend', (e) => {
+  const start = touchState[cardId];
+  if (!start) return;
+  const endX = e.changedTouches[0].clientX;
+  const endY = e.changedTouches[0].clientY;
+  const diffX = endX - start.x;
+  const diffY = endY - start.y;
+  if (Math.abs(diffX) > 40 && Math.abs(diffY) < 80) {
+  move(diffX < 0 ? 'left' : 'right');
+  }
+  touchState[cardId] = null;
+  }, { passive: true });
+  
+  box.addEventListener('mousedown', (e) => {
+  touchState[cardId] = { x: e.clientX, y: e.clientY };
+  });
+  
+  box.addEventListener('mouseup', (e) => {
+  const start = touchState[cardId];
+  if (!start) return;
+  const diffX = e.clientX - start.x;
+  const diffY = e.clientY - start.y;
+  if (Math.abs(diffX) > 40 && Math.abs(diffY) < 80) {
+  move(diffX < 0 ? 'left' : 'right');
+  }
+  touchState[cardId] = null;
+  });
+  }
+  
+  function getCurrentPrice(product, item, cardId) {
+  const keyType = selectedKeys[cardId] || 'Key ';
+  return keyType === 'Digital ' || keyType === 'Key+Digital '
+  ? item.priceDigital
+  : item.priceKey;
+  }
+  
+  function renderSlideshow() {
+  const container = document.getElementById('slideshowContainer');
+  if (!container) return;
+  container.innerHTML = `
+  <div class="slide"><img class="slide-1" src="10.jpg" alt=""></div>
+  <div class="slide"><img class="slide-2" src="11.jpg" alt=""></div>
+  <div class="slide"><img class="slide-3" src="12.jpg" alt=""></div>
+  `;
+  startSlideshow();
+  }
+  
+  function startSlideshow() {
+  let slideIndex = 0;
+  const slidesEl = document.getElementsByClassName('slide');
+  if (!slidesEl.length) return;
+  slidesEl[0].style.display = 'block';
+  setInterval(() => {
+  slidesEl[slideIndex].style.display = 'none';
+  slideIndex = (slideIndex + 1) % slidesEl.length;
+  slidesEl[slideIndex].style.display = 'block';
+  }, 3000);
+  }
+  
+  function renderThumbs(p) {
+  if (!p.images || !p.images.length) return '';
+  return `
+  <div class="thumbs-side">
+  ${p.images.map(img => `
+  <img src="${img}" onclick="setCardImage(${p.cardId}, '${img}')">
+  `).join('')}
+  </div>
+  `;
+  }
+  
+  function renderProducts() {
+  const box = document.getElementById('products');
+  if (!box) return;
+  let html = '';
+  
+  products.forEach((p) => {
+  const defaultPrice = getCurrentPrice(p, p.sizes[0], p.cardId);
+  
+  html += `
+  <div class="card" id="card_${p.cardId}">
+  <div id="imgbox_${p.cardId}" class="product-image-box">
+  <img id="img_${p.cardId}" src="${p.image}" alt="${p.name}">
+  </div>
+  
+  ${p.images ? renderThumbs(p) : ''}
+  
+  <div class="price" id="price_${p.cardId}">${formatPrice(defaultPrice)}</div>
+  <h3 style="margin:0 0 10px">${p.name}</h3>
+  
+  <div class="meta">
+  <div><b>الموديل:</b> <span id="size_text_${p.cardId}">${p.sizes[0].label}</span></div>
+  <div><b>القفل:</b> <span id="lock_text_${p.cardId}">${p.lock || ''}</span></div>
+  
+  ${p.cardId === 2 ? `
+  <div><b>الطول:</b> <span id="length_text_${p.cardId}">${p.sizes[0].length || ''}</span></div>
+  <div><b>العرض:</b> <span id="width_text_${p.cardId}">${p.sizes[0].width || ''}</span></div>
+  <div><b>العمق:</b> <span id="depth_text_${p.cardId}">${p.sizes[0].depth || ''}</span></div>
+  ` : p.cardId === 4 || p.cardId === 5 || p.cardId === 6 ? `
+  <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
+  <div><b>السعة:</b> <span id="capacity_text_${p.cardId}">${p.sizes[0].capacity || ''}</span></div>
+  ` : `
+  <div><b>الوزن:</b> <span id="weight_text_${p.cardId}">${p.sizes[0].weight || ''}</span></div>
+  `}
+  </div>
+  
+  <div class="card-content">
+  ${(p.cardId === 3 || p.cardId === 4 || p.cardId === 5 || p.cardId === 6 || p.cardId === 7) ? `
+  <div class="lock-section" style="margin:10px 0">
+  <div style="font-weight:700;margin-bottom:6px;color:var(--gold)">نوع القفل</div>
+  ${p.cardId === 3 ? `
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="Key " checked onchange="updateKey(${p.cardId}, this.value)">
+  <span>2Key</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="Key+Digital " onchange="updateKey(${p.cardId}, this.value)">
+  <span>Key+Digital</span>
+  </label>
+  </div>
+  ` : `
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="Key " checked onchange="updateKey(${p.cardId}, this.value)">
+  <span>2Key</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+  <input type="radio" name="key_${p.cardId}" value="Digital " onchange="updateKey(${p.cardId}, this.value)">
+  <span>Digital</span>
+  </label>
+  </div>
+  `}
+  </div>
+  ` : ''}
+  
+  <div class="size-section" style="margin:0 0 2px">
+  <div class="model-title">الموديل</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+  ${p.sizes.map((s, idx) => `
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer;width:calc(33.33% - 7px)">
+  <input type="radio" name="size_${p.cardId}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateCard(${p.cardId}, this.value)">
+  <span>${s.label}</span>
+  </label>
+  `).join('')}
+  </div>
+  </div>
+  </div>
+  
+  <a href="https://wa.me/966558687782" target="_blank" id="order_btn_${p.cardId}" class="order-btn">طلب</a>
+  </div>
+  `;
+  });
+  
+  box.innerHTML = html;
+  
+  products.forEach(p => {
+  bindSwipe(p.cardId);
+  selectedKeys[p.cardId] = selectedKeys[p.cardId] || 'Key ';
+  updateKey(p.cardId, selectedKeys[p.cardId]);
+  setCardImage(p.cardId, p.image);
+  });
+  }
+  
+  function updateKey(cardId, keyType) {
+  selectedKeys[cardId] = keyType;
+  const product = products.find(p => p.cardId === cardId);
+  if (!product) return;
+  
+  const selectedSize = document.querySelector(`input[name="size_${cardId}"]:checked`);
+  if (!selectedSize) return;
+  
+  const item = product.sizes[Number(selectedSize.value)];
+  if (!item) return;
+  
+  const finalPrice = (keyType === 'Digital ' || keyType === 'Key+Digital ')
+  ? item.priceDigital
+  : item.priceKey;
+  
+  const priceEl = document.getElementById('price_' + cardId);
+  if (priceEl) priceEl.textContent = formatPrice(finalPrice);
+  
+  const btn = document.getElementById('order_btn_' + cardId);
+  if (btn) {
+  const msg = `أرغب في طلب: ${product.name}
+  المقاس: ${item.label}
+  نوع القفل: ${keyType}
+  السعر: ${formatPrice(finalPrice)}`;
+  btn.href = `https://wa.me/966558687782?text=${encodeURIComponent(msg)}`;
+  }
+  }
+  
+  function updateCard(cardId, index) {
+  const product = products.find(p => p.cardId === cardId);
+  if (!product) return;
+  
+  const item = product.sizes[Number(index)];
+  if (!item) return;
+  
+  document.getElementById('size_text_' + cardId).textContent = item.label;
+  setCardImage(cardId, item.image || product.image);
+  
+  const keyType = selectedKeys[cardId] || 'Key ';
+  const finalPrice = (keyType === 'Digital ' || keyType === 'Key+Digital ')
+  ? item.priceDigital
+  : item.priceKey;
+  
+  const priceEl = document.getElementById('price_' + cardId);
+  if (priceEl) priceEl.textContent = formatPrice(finalPrice);
+  
+  const btn = document.getElementById('order_btn_' + cardId);
+  if (btn) {
+  const msg = `أرغب في طلب: ${product.name}
+  المقاس: ${item.label}
+  نوع القفل: ${keyType}
+  السعر: ${formatPrice(finalPrice)}`;
+  btn.href = `https://wa.me/966558687782?text=${encodeURIComponent(msg)}`;
+  }
+  
+  if (cardId === 2) {
+  document.getElementById('length_text_' + cardId).textContent = item.length || '';
+  document.getElementById('width_text_' + cardId).textContent = item.width || '';
+  document.getElementById('depth_text_' + cardId).textContent = item.depth || '';
+  } else if ([4, 5, 6].includes(cardId)) {
+  document.getElementById('weight_text_' + cardId).textContent = item.weight || '';
+  const cap = document.getElementById('capacity_text_' + cardId);
+  if (cap) cap.textContent = item.capacity || '';
+  } else {
+  document.getElementById('weight_text_' + cardId).textContent = item.weight || '';
+  }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  renderSlideshow();
+  });
   </script>
 </body>
 </html>
